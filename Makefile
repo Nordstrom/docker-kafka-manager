@@ -24,6 +24,10 @@ build/docker/kafka-manager.zip: build/kafka-manager-$(KAFKA_MANAGER_VERSION)/tar
 build/kafka-manager-$(KAFKA_MANAGER_VERSION)/target/universal/kafka-manager-1.3.0.7.zip: build/kafka-manager-$(KAFKA_MANAGER_VERSION)/build.sbt | build
 	cd build/kafka-manager-$(KAFKA_MANAGER_VERSION); sbt clean dist
 
+# TODO: build this within an sbt-builder container
+# build/kafka-manager-$(KAFKA_MANAGER_VERSION)/target/universal/kafka-manager-1.3.0.7.zip: build/kafka-manager-$(KAFKA_MANAGER_VERSION)/build.sbt
+# 	docker run -i -v $(PWD)/build/kafka-manager-$(KAFKA_MANAGER_VERSION):/src quay.io/nordstrom/sbt:$(SBT_VERSION) sbt clean dist
+
 build/kafka-manager-$(KAFKA_MANAGER_VERSION)/build.sbt: build/kafka-manager-src-$(KAFKA_MANAGER_VERSION).tar.gz
 	cd build; tar xvzf kafka-manager-src-$(KAFKA_MANAGER_VERSION).tar.gz
 
